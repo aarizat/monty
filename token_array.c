@@ -51,7 +51,8 @@ char **strtok_arr(char *str, char *delim)
   count = token_counter(str, delim);
   if (count == 0)
 	return (NULL);
-  token_array = _calloc((count + 1), sizeof(char *));
+  /*token_array = _calloc((count + 1), sizeof(char *));*/
+  token_array = malloc(sizeof(char *) * (count + 1));
   if (token_array == NULL)
 	return (NULL);
   while (*str && i < count)
@@ -64,7 +65,8 @@ char **strtok_arr(char *str, char *delim)
 		  copy = str;
 		  while (str_delim == 0 && *str)
 			str_delim = find_delimiter(delim, *str), len++, str++;
-		  token_array[i] = _calloc((len + 1), sizeof(char));
+		  /*token_array[i] = _calloc((len + 1), sizeof(char));*/
+		  token_array[i] = malloc(sizeof(char) * (len + 1));
 		  if (!token_array[i])
 			return (NULL);
 		  while (*copy && *copy != '\n')

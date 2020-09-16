@@ -27,3 +27,12 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 
   return (p);
 }
+
+void free_arr(char **arr)
+{
+	int i = 0;
+
+	for (;arr[i]; i++)
+		free(arr[i]);
+	free(arr);
+}
