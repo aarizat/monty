@@ -1,8 +1,8 @@
 #include "monty.h"
 
 /**
- * _sub - substracts the two top elements on the stack
- * @stack: head
+ * _sub - substracts the two top elements on the stack.
+ * @stack: head.
  * @line_number: line number.
  */
 
@@ -29,7 +29,7 @@ void _sub(stack_t **stack, unsigned int line_number)
 
 /**
 * _mul - multiplies the two top elements on the stack
-* @stack: head
+* @stack: head.
 * @line_number: line number.
 */
 
