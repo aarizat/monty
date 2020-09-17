@@ -11,7 +11,7 @@ void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
 
-	if (arr_len() != 2)
+	if (arr_len() < 2)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		/*free_failure(*stack);*/
