@@ -11,18 +11,8 @@ int main(int argc, char **argv)
 	instruction_t valid_instructions[7];
 	stack_t *head = NULL;
 
+	check_start(argc, argv);
 	line_buf = NULL;
-	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-	fp = fopen(argv[1], "r");
-	if (!fp)
-	{
-		fprintf(stderr, "Error: Can't open file %s", argv[1]);
-		exit(EXIT_FAILURE);
-	}
 	for (i = 0; i < 7; i++)
 		valid_instructions[i] = functions_list(i);
 	line_size = getline(&line_buf, &buf_size, fp);
@@ -34,15 +24,18 @@ int main(int argc, char **argv)
 			token_arr = strtok_arr(line_buf, " \n");
 			for (i = 0; i < 7; i++)
 			{
-				if (!strcmp(valid_instructions[i].opcode, token_arr[0]))
+				if (!strcmp(valid_instructions[i].opcode,
+					token_arr[0]))
 				{
-					valid_instructions[i].f(&head, line_count);
+					valid_instructions[i].f(&head,
+								line_count);
 					break;
 				}
 			}
 			if (i == 7)
 			{
-				fprintf(stderr, "L%d: unknown instruction %s\n", line_count, token_arr[0]);
+				fprintf(stderr, "L%d: unknown instruction %s\n",
+					line_count, token_arr[0]);
 				free_failure(head);
 			}
 			free_arr(token_arr);
