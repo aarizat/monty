@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 	size_t buf_size = 0;
 	int i, line_size = 0;
 	unsigned int line_count = 0;
-	instruction_t valid_instructions[4];
+	instruction_t valid_instructions[7];
 	stack_t *head = NULL;
 
 	line_buf = NULL;
@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error: Can't open file %s", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < 7; i++)
 		valid_instructions[i] = functions_list(i);
 	line_size = getline(&line_buf, &buf_size, fp);
 	while (line_size != -1)
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
 		if (line_size != 1)
 		{
 			token_arr = strtok_arr(line_buf, " \n");
-			for (i = 0; i < 4; i++)
+			for (i = 0; i < 7; i++)
 			{
 				if (!strcmp(valid_instructions[i].opcode, token_arr[0]))
 				{
@@ -40,7 +40,7 @@ int main(int argc, char **argv)
 					break;
 				}
 			}
-			if (i == 4)
+			if (i == 7)
 			{
 				fprintf(stderr, "L%d: unknown instruction %s\n", line_count, token_arr[0]);
 				free_failure(head);
@@ -59,10 +59,11 @@ instruction_t functions_list(int i)
 	instruction_t functions[] = {{"push", _push},
 				     {"pall", _pall},
 				     {"pint", _pint},
-				     {"pop", _pop}
-//				    {"pall", _pall},{"pint", _pint},
-//				    {"swap", _swap},{"add", _add},
-//				    {"nop", _nop}, {"sub", _sub},
+				     {"pop", _pop},
+				     {"swap", _swap},
+				     {"add", _add},
+				     {"nop", _nop}
+//                                   {"sub", _sub},
 //				    {"div", _div}, {"mul", _mul},
 //				    {"mod", _mod}, {"pchar", _pchar},
 //				    {"pstr", _pstr}, {"rotl", _rotl},
