@@ -3,13 +3,8 @@
 /* standard libraries*/
 #include <stdio.h>
 #include <stdlib.h>
-/*functions*/
-char **strtok_arr(char *str, char *delim);
-int find_delimiter(char *delim, char str_char);
-int token_counter(char *str, char *delim);
-void *_calloc(unsigned int nmemb, unsigned int size);
-void free_arr(char **arr);
-void _pop(stack_t **stack, unsigned int line_number);
+#include <string.h>
+#include <ctype.h>
 /* Structures */
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -41,4 +36,21 @@ typedef struct instruction_s
   void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/*global variables*/
+extern char **token_arr;
+extern char *line_buf;
+extern FILE *fp;
+/*functions*/
+char **strtok_arr(char *str, char *delim);
+int find_delimiter(char *delim, char str_char);
+int token_counter(char *str, char *delim);
+void *_calloc(unsigned int nmemb, unsigned int size);
+void free_arr(char **arr);
+instruction_t functions_list(int i);
+void _push(stack_t **stack, unsigned int line_number);
+int arr_len();
+void free_dlistint(stack_t **head);
+int is_number();
+void free_failure(stack_t *head);
+void free_success(stack_t *head);
 #endif

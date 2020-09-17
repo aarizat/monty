@@ -1,17 +1,17 @@
 #include "monty.h"
 
+char **token_arr;
+char *line_buf;
+FILE *fp;
 int main(int argc, char **argv)
 {
-	char *line_buf = NULL;
 	size_t buf_size = 0;
-	size_t line_size = 0;
+	int i, line_size = 0;
 	unsigned int line_count = 0;
-	FILE *fp;
-	extern char **token_arr;
-	int i;
-	instruction_t valid_instructions[17];
-	stack_t **head = NULL;
+	instruction_t valid_instructions[1];
+	stack_t *head = NULL;
 
+	line_buf = NULL;
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -23,46 +23,49 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Error: Can't open file %s", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	for (i = 0; i < 16; i++)
-	  valid_instructions[i] = functions_list(i);
+	for (i = 0; i < 1; i++)
+		valid_instructions[i] = functions_list(i);
 	line_size = getline(&line_buf, &buf_size, fp);
 	while (line_size != -1)
 	{
 		line_count++;
-		token_arr = strtok_arr(line_buf, " \n");
-		for (i = 0; token_arr[i]; i++)
-			printf("%s\n", token_arr[i]);
-		free_arr(token_arr);
-		token_arr = NULL;
-		/*printf("line %d -->  %s", line_count, line_buf);*/
+		if (line_size != 1)
+		{
+			token_arr = strtok_arr(line_buf, " \n");
+			for (i = 0; i < 1; i++)
+			{
+				if (!strcmp(valid_instructions[i].opcode, token_arr[0]))
+				{
+					valid_instructions[i].f(&head, line_count);
+					break;
+				}
+				else if (i == 0)
+				{
+					fprintf(stderr, "L%d: unknown instruction %s\n", line_count, token_arr[0]);
+					free_failure(head);
+				}
+			}
+			free_arr(token_arr);
+		}
 		line_size = getline(&line_buf, &buf_size, fp);
 	}
-	free(line_buf);
-	line_buf = NULL;
-	fclose(fp);
+	free_success(head);
 	return (0);
 }
 
 
 instruction_t functions_list(int i)
 {
-  intruction_t functions[] = {{"pop", _pop},
-							  {"push", _push},
-							  {"pall", _pall},
-							  {"pint", _pint},
-							  {"swap", _swap},
-							  {"add", _add},
-							  {"nop", _nop},
-							  {"sub", _sub},
-							  {"div", _div},
-							  {"mul", _mul},
-							  {"mod", _mod},
-							  {"pchar", _pchar},
-							  {"pstr", _pstr},
-							  {"rotl", _rotl},
-							  {"rotr", _rotr},
-							  {"stack", _stack},
-							  {"queue", _queue}};
-  return (functions[i]);
+	instruction_t functions[1] = {{"push", _push}
+//		                    {"pop", _pop},
+//				    {"pall", _pall},{"pint", _pint},
+//				    {"swap", _swap},{"add", _add},
+//				    {"nop", _nop}, {"sub", _sub},
+//				    {"div", _div}, {"mul", _mul},
+//				    {"mod", _mod}, {"pchar", _pchar},
+//				    {"pstr", _pstr}, {"rotl", _rotl},
+//				    {"rotr", _rotr}, {"stack", _stack},
+//				    {"queue", _queue}
+	};
+	return (functions[i]);
 }
-

@@ -36,3 +36,48 @@ void free_arr(char **arr)
 		free(arr[i]);
 	free(arr);
 }
+
+int arr_len()
+{
+	int len = 0;
+
+	for (; token_arr[len]; len++)
+	{}
+       return (len);
+}
+
+/**
+ * free_dlistint - free all of nodes of double linked list.
+ * @head: pointer to first node.
+ *
+ * Return: nothing.
+ */
+
+void free_dlistint(stack_t **head)
+{
+	stack_t *aux;
+
+	if (*head == NULL)
+		return;
+	while (*head != NULL)
+	{
+		aux = (*head)->next;
+		free(*head);
+		*head = aux;
+	}
+	*head = NULL;
+}
+
+int is_number()
+{
+	int i = 0;
+
+	if (!token_arr[1])
+		return (0);
+	for (; token_arr[1][i]; i++)
+	{
+		if (!isdigit(token_arr[1][i]))
+			return (0);
+	}
+	return (1);
+}
