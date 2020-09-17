@@ -1,10 +1,17 @@
 #include "monty.h"
 
+/**
+ * _push - pushes an element to sttack
+ * @stack: pointer to first node of the doubly linked list.(stack).
+ * @line_number: number of line where is find push instruction.
+ *
+ * Return: nothing.
+ */
 void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
 
-        if (arr_len() != 2)
+	if (arr_len() != 2)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free_failure(*stack);
@@ -13,7 +20,8 @@ void _push(stack_t **stack, unsigned int line_number)
 	{
 		if (!is_number())
 		{
-			fprintf(stderr, "L%u: usage: push integer\n", line_number);
+			fprintf(stderr, "L%u: usage: push integer\n",
+				line_number);
 			free_failure(*stack);
 		}
 	}
@@ -32,7 +40,13 @@ void _push(stack_t **stack, unsigned int line_number)
 		*stack = new_node;
 	}
 }
-
+/**
+ * _pall - prints all values on the stack.
+ * @stack: pointer to first node of the  doubly linked list. (stack).
+ * @line_number: number of line where is find pall instruction.
+ *
+ * Return: nothing.
+ */
 void _pall(stack_t **stack, unsigned int line_number)
 {
 	(void) line_number;
@@ -41,7 +55,13 @@ void _pall(stack_t **stack, unsigned int line_number)
 	for (; aux != NULL; aux = aux->next)
 		printf("%d\n", aux->n);
 }
-
+/**
+ * _pint - prints the value at the top of the stack.
+ * @stack: pointer to first node of the  doubly linked list. (stack).
+ * @line_number: number of line where is find pint instruction.
+ *
+ * Return: nothing.
+ */
 void _pint(stack_t **stack, unsigned int line_number)
 {
 	if (!*stack)
@@ -51,7 +71,13 @@ void _pint(stack_t **stack, unsigned int line_number)
 	}
 	printf("%d\n", (*stack)->n);
 }
-
+/**
+ * _pop - removes the top element of the stack.
+ * @stack: pointer to first node of the  doubly linked list. (stack).
+ * @line_number: number of line where is find pop instruction.
+ *
+ * Return: nothing.
+ */
 void _pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *aux = *stack;
