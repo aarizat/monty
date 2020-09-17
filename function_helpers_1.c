@@ -20,7 +20,7 @@ FILE *check_start(int ac, char **av)
 	fp = fopen(av[1], "r");
 	if (!fp)
 	{
-		fprintf(stderr, "Error: Can't open file %s", av[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
 	return (fp);
