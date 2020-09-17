@@ -31,7 +31,11 @@ void _push(stack_t **stack, unsigned int line_number)
 	}
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		free_arr(token_arr);
 		return;
+	}
 	new_node->n = atoi(token_arr[1]);
 	new_node->prev = NULL;
 	new_node->next = NULL;
