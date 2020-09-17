@@ -40,6 +40,9 @@ typedef struct instruction_s
 extern char **token_arr;
 extern char *line_buf;
 extern FILE *fp;
+char **token_arr;
+char *line_buf;
+FILE *fp;
 /*functions*/
 char **strtok_arr(char *str, char *delim);
 int find_delimiter(char *delim, char str_char);
@@ -59,5 +62,9 @@ void _pop(stack_t **stack, unsigned int line_number);
 void _swap(stack_t **stack, unsigned int line_number);
 void _add(stack_t **stack, unsigned int line_number);
 void _nop(stack_t **stack, unsigned int line_number);
+void _sub(stack_t **stack, unsigned int line_number);
+void _div(stack_t **stack, unsigned int line_number);
+void _mul(stack_t **stack, unsigned int line_number);
+void _mod(stack_t **stack, unsigned int line_number);
 void check_start(int ac, char **av);
 #endif
