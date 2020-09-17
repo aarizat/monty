@@ -53,10 +53,7 @@ char **strtok_arr(char *str, char *delim)
 		return (NULL);
 	token_array = malloc(sizeof(char *) * (count + 1));
 	if (token_array == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
 		return (NULL);
-	}
 	while (*str && i < count)
 	{
 		str_delim = find_delimiter(delim, *str);
@@ -69,10 +66,7 @@ char **strtok_arr(char *str, char *delim)
 				str_delim = find_delimiter(delim, *str);
 			token_array[i] = malloc(sizeof(char) * (len + 1));
 			if (!token_array[i])
-			{
-				fprintf(stderr, "Error: malloc failed\n");
 				return (NULL);
-			}
 			while (*copy && *copy != '\n')
 			{
 				copy_delim = find_delimiter(delim, *copy);
