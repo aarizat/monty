@@ -45,7 +45,7 @@ void free_arr(char **arr)
  *
  * Return: lenght of the array.
  */
-int arr_len()
+int arr_len(void)
 {
 	int len = 0;
 
@@ -78,7 +78,7 @@ void free_dlistint(stack_t **head)
  *
  * Return: nothing.
  */
-int is_number()
+int is_number(void)
 {
 	int i = 0;
 
