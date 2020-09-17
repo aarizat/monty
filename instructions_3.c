@@ -21,7 +21,9 @@ void _sub(stack_t **stack, unsigned int line_number)
 	else
 	{
 		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
-		free_failure(*stack);
+		/*free_failure(*stack);*/
+		free_arr(token_arr);
+		return;
 	}
 }
 
@@ -46,7 +48,9 @@ void _mul(stack_t **stack, unsigned int line_number)
 	else
 	{
 		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
-		free_failure(*stack);
+		/*free_failure(*stack);*/
+		free_arr(token_arr);
+		return;
 	}
 }
 
@@ -64,9 +68,11 @@ void _div(stack_t **stack, unsigned int line_number)
 	{
 		if ((*stack)->n == 0)
 		{
-			fprintf(stderr, "L<line_number>: division by zero",
+			fprintf(stderr, "L%u: division by zero\n",
 				line_number);
-			free_failure(*stack);
+			/*free_failure(*stack);*/
+			free_arr(token_arr);
+			return;
 		}
 		tmp = (*stack)->next;
 		tmp->n /= (*stack)->n;
@@ -78,7 +84,9 @@ void _div(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: can't sub, stack too short\n",
 			line_number);
-		free_failure(*stack);
+		/*free_failure(*stack);*/
+		free_arr(token_arr);
+		return;
 	}
 }
 
@@ -96,9 +104,11 @@ void _mod(stack_t **stack, unsigned int line_number)
 	{
 		if ((*stack)->n == 0)
 		{
-			fprintf(stderr, "L<line_number>: division by zero",
+			fprintf(stderr, "L%u: division by zero\n",
 				line_number);
-			free_failure(*stack);
+			/*free_failure(*stack);*/
+			free_arr(token_arr);
+			return;
 		}
 		tmp = (*stack)->next;
 		tmp->n %= (*stack)->n;
@@ -110,6 +120,8 @@ void _mod(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: can't sub, stack too short\n",
 			line_number);
-		free_failure(*stack);
+		/*free_failure(*stack);*/
+		free_arr(token_arr);
+		return;
 	}
 }
