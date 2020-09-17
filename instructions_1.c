@@ -69,9 +69,9 @@ void _add(stack_t **stack, unsigned int line_number)
 }
 
 /**
-* _nop - Does nothing
-* @stack: head of stack
-* @line_number: line number
+* _nop - Does nothing.
+* @stack: head of stack.
+* @line_number: line number.
 */
 
 void _nop(stack_t **stack, unsigned int line_number)
