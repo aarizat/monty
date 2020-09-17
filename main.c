@@ -39,8 +39,9 @@ int main(int argc, char **argv)
 			}
 			if (i == 11)
 			{
-				fprintf(stderr, "L%d: unknown instruction %s\n",
-					l_count, token_arr[0]);
+				fprintf(stderr,
+					"L%d: unknown instruction <opcode>\n",
+					l_count);
 				free_arr(token_arr);
 				free_failure(head, l_buf, fp);
 			}
