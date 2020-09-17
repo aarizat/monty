@@ -9,44 +9,45 @@
  */
 int main(int argc, char **argv)
 {
+	FILE *fp;
+	char *l_buf = NULL;
 	size_t buf_size = 0;
 	int i, line_size = 0;
-	unsigned int line_count = 0;
-	instruction_t valid_instructions[11];
+	unsigned int l_count = 0;
+	instruction_t v_list[11];
 	stack_t *head = NULL;
 
-	check_start(argc, argv);
-	line_buf = NULL;
+	fp = check_start(argc, argv);
 	for (i = 0; i < 11; i++)
-		valid_instructions[i] = functions_list(i);
-	line_size = getline(&line_buf, &buf_size, fp);
-	while (line_size != -1)
+		v_list[i] = functions_list(i);
+	line_size = getline(&l_buf, &buf_size, fp);
+	for (; line_size != -1; line_size = getline(&l_buf, &buf_size, fp))
 	{
-		line_count++;
+		l_count++;
 		if (line_size != 1)
 		{
-			token_arr = strtok_arr(line_buf, " \n");
+			token_arr = strtok_arr(l_buf, " \n");
 			for (i = 0; i < 11; i++)
 			{
-				if (!strcmp(valid_instructions[i].opcode,
-					token_arr[0]))
+				if (!strcmp(v_list[i].opcode, token_arr[0]))
 				{
-					valid_instructions[i].f(&head,
-								line_count);
+					v_list[i].f(&head, l_count);
+					if (!token_arr)
+						free_failure(head, l_buf, fp);
 					break;
 				}
 			}
 			if (i == 11)
 			{
 				fprintf(stderr, "L%d: unknown instruction %s\n",
-					line_count, token_arr[0]);
-				free_failure(head);
+					l_count, token_arr[0]);
+				free_arr(token_arr);
+				free_failure(head, l_buf, fp);
 			}
 			free_arr(token_arr);
 		}
-		line_size = getline(&line_buf, &buf_size, fp);
 	}
-	free_success(head);
+	free_success(head, l_buf, fp);
 	return (0);
 }
 

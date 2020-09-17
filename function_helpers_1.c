@@ -7,8 +7,11 @@
  *
  * Return: nothing.
  */
-void check_start(int ac, char **av)
+
+FILE *check_start(int ac, char **av)
 {
+	FILE *fp;
+
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -20,17 +23,20 @@ void check_start(int ac, char **av)
 		fprintf(stderr, "Error: Can't open file %s", av[1]);
 		exit(EXIT_FAILURE);
 	}
+	return (fp);
 }
 
 /**
  * free_failure - free all allocated slot on the heap when the program fail.
  * @head: pointer to first node in the stack.
- *
+ * @line_buf: line
+ * @fp: file pointer˙
  * Return: nothing.
  */
-void free_failure(stack_t *head)
+
+void free_failure(stack_t *head, char *line_buf, FILE *fp)
 {
-	free_arr(token_arr);
+	/*free_arr(token_arr);*/
 	free(line_buf);
 	free_dlistint(&head);
 	fclose(fp);
@@ -40,10 +46,11 @@ void free_failure(stack_t *head)
 /**
  * free_success - free all allocated slot on the heap when the program success.
  * @head: pointer to first node in the stack.
- *
+ * @line_buf: line.
+ * @fp: file pointer.
  * Return: nothing.
  */
-void free_success(stack_t *head)
+void free_success(stack_t *head, char *line_buf, FILE *fp)
 {
 	free(line_buf);
 	free_dlistint(&head);

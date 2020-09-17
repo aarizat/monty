@@ -14,7 +14,9 @@ void _push(stack_t **stack, unsigned int line_number)
 	if (arr_len() != 2)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		free_failure(*stack);
+		/*free_failure(*stack);*/
+		free_arr(token_arr);
+		return;
 	}
 	else
 	{
@@ -22,7 +24,9 @@ void _push(stack_t **stack, unsigned int line_number)
 		{
 			fprintf(stderr, "L%u: usage: push integer\n",
 				line_number);
-			free_failure(*stack);
+			/*free_failure(*stack);*/
+			free_arr(token_arr);
+			return;
 		}
 	}
 	new_node = malloc(sizeof(stack_t));
@@ -68,7 +72,9 @@ void _pint(stack_t **stack, unsigned int line_number)
 	if (!*stack)
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
-		free_failure(*stack);
+		/*free_failure(*stack);*/
+		free_arr(token_arr);
+		return;
 	}
 	printf("%d\n", (*stack)->n);
 }
@@ -87,7 +93,9 @@ void _pop(stack_t **stack, unsigned int line_number)
 	if (!aux)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
-		free_failure(*stack);
+		/*free_failure(*stack);*/
+		free_arr(token_arr);
+		return;
 	}
 	else if (!aux->next)
 	{

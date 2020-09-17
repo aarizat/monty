@@ -34,7 +34,9 @@ void _swap(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n",
 			line_number);
-		free_failure(*stack);
+		/*free_failure(*stack);*/
+		free_arr(token_arr);
+		return;
 	}
 }
 
@@ -60,7 +62,9 @@ void _add(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n",
 			line_number);
-		free_failure(*stack);
+		/*free_failure(*stack);*/
+		free_arr(token_arr);
+		return;
 	}
 }
 

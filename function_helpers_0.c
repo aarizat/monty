@@ -39,6 +39,7 @@ void free_arr(char **arr)
 	for (; arr[i]; i++)
 		free(arr[i]);
 	free(arr);
+	token_arr = NULL;
 }
 /**
  * arr_len - calcaultes the lenght of array.
