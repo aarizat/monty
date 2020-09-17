@@ -50,8 +50,9 @@ void _push(stack_t **stack, unsigned int line_number)
 void _pall(stack_t **stack, unsigned int line_number)
 {
 	(void) line_number;
-	stack_t *aux = *stack;
+	stack_t *aux;
 
+	aux = *stack;
 	for (; aux != NULL; aux = aux->next)
 		printf("%d\n", aux->n);
 }
@@ -67,7 +68,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 	if (!*stack)
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
-		exit(EXIT_FAILURE);
+		free_failure(*stack);
 	}
 	printf("%d\n", (*stack)->n);
 }
@@ -85,10 +86,7 @@ void _pop(stack_t **stack, unsigned int line_number)
 	if (!aux)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
-		free_arr(token_arr);
-		fclose(fp);
-		free(line_buf);
-		exit(EXIT_FAILURE);
+		free_failure(*stack);
 	}
 	else if (!aux->next)
 	{
