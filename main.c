@@ -1,5 +1,12 @@
 #include "monty.h"
 
+/**
+ * main - Entry point
+ * @argc: number of arguments for the program.
+ * @argv: array of arguments.
+ *
+ * Return: always 0.
+ */
 int main(int argc, char **argv)
 {
 	size_t buf_size = 0;
@@ -43,7 +50,12 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-
+/**
+ * functions_list - structure with all the instrutions for the stack
+ * @i: integer number.
+ *
+ * Return: structure in the specified position.
+ */
 instruction_t functions_list(int i)
 {
 	instruction_t functions[] = {{"push", _push},
