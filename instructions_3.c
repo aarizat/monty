@@ -20,7 +20,8 @@ void _sub(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can't sub, stack too short\n",
+			line_number);
 		free_arr(token_arr);
 		return;
 	}
@@ -46,7 +47,8 @@ void _mul(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		fprintf(stderr, "L%u: can't mul, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can't mul, stack too short\n",
+			line_number);
 		free_arr(token_arr);
 		return;
 	}

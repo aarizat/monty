@@ -39,9 +39,8 @@ int main(int argc, char **argv)
 			}
 			if (i == 11)
 			{
-				fprintf(stderr,
-					"L%d: unknown instruction <opcode>\n",
-					l_count);
+				fprintf(stderr, "L%d: unknown instruction %s\n",
+					l_count, token_arr[0]);
 				free_arr(token_arr);
 				free_failure(head, l_buf, fp);
 			}
@@ -60,23 +59,18 @@ int main(int argc, char **argv)
  */
 instruction_t functions_list(int i)
 {
-	instruction_t functions[] = {{"push", _push},
-				     {"pall", _pall},
-				     {"pint", _pint},
-				     {"pop", _pop},
-				     {"swap", _swap},
-				     {"add", _add},
-				     {"nop", _nop},
-				     {"sub", _sub},
-				     {"div", _div},
-				     {"mul", _mul},
-				     {"mod", _mod}
-				     /*
-				      *{"pchar", _pchar},
-				      *{"pstr", _pstr}, {"rotl", _rotl},
-				      *{"rotr", _rotr}, {"stack", _stack},
-				      *{"queue", _queue}
-				      **/
+	instruction_t functions[] = {
+		{"push", _push},
+		{"pall", _pall},
+		{"pint", _pint},
+		{"pop", _pop},
+		{"swap", _swap},
+		{"add", _add},
+		{"nop", _nop},
+		{"sub", _sub},
+		{"div", _div},
+		{"mul", _mul},
+		{"mod", _mod}
 	};
 	return (functions[i]);
 }
