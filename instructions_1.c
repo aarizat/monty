@@ -2,7 +2,7 @@
 
 /**
  * _swap - Swaps the top two elements if the stack
- * @stack: head of stack
+ * @stack: head of stack.
  * @line_number: line number
  */
 
