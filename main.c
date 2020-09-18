@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 		l_count++;
 		if (line_size != 1)
 		{
-			token_arr = strtok_arr(l_buf, " \n");
+			token_arr = strtok_arr(l_buf, " \n\t");
 			for (i = 0; i < 11; i++)
 			{
 				if (!strcmp(v_list[i].opcode, token_arr[0]))
