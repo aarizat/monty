@@ -115,7 +115,6 @@ void _mod(stack_t **stack, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: can't mod, stack too short\n",
 			line_number);
-		/*free_failure(*stack);*/
 		free_arr(token_arr);
 		return;
 	}
